@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Archiv</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/ajaxfunctions.js"></script>
+</head>
+<body>
+<div class="centerdiv">
+    <header>
+        <h1>Urlaubsplanung</h1>
+    </header>
+    <section class="left">
+        <h1>Urlaubsziel anlegen</h1>
+        <p>
+        <form id="newVideo">
+            <label>Titel:</label>
+            <input type="text" name="title" required="required">
+            <label>Beschreibung:</label>
+            <textarea name="description" required="required" rows="10"></textarea>
+            <label>Altersbeschränkung:</label>
+            <input type="text" name="age_rating" required="required">
+            <label>Genre:</label>
+            <input type="text" name="genre" required="required"><br>
+            <input type="submit" id="newVideoButton">
+        </form>
+        </p>
+    </section>
+    <section class="right">
+        <h1>Meine Videos</h1>
+        <p>
+            <button id="loadtable">Laden</button>
+        <table id="videotable" class="display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>vnr</th>
+                <th>title</th>
+                <th>description</th>
+                <th>age_rating</th>
+                <th>genre</th>
+            </tr>
+            </thead>
+        </table>
+        </p>
+    </section>
+    <section class="under">
+        <h1>Update Video</h1>
+        <p>
+        <form id="updateVideo">
+            <label for="Video Number">Video Number:</label>
+            <select name="Video Number" id="vnr"></select>
+            <label>Titel:</label>
+            <input type="text" name="title_update" required="required">
+            <label>Beschreibung:</label>
+            <textarea name="description_update" required="required" rows="10"></textarea>
+            <label>Altersbeschränkung:</label>
+            <input type="text" name="age_rating_update" required="required">
+            <label>Genre:</label>
+            <input type="text" name="genre_update" required="required"><br>
+            <input type="submit" id="updateVideoButton">
+        </form>
+        </p>
+    </section>
+    <section class="under right">
+        <h1>Delete Video</h1>
+        <p>
+            <label for="Video Number Delete">Video Number:</label>
+            <select name="Video Number Delete" id="vnr_del"></select><br>
+            <button id="deleteVideo">Delete Video</button>
+        </p>
+    </section>
+    <footer>Copyright (c) - 2017 by Me!</footer>
+</div>
+</body>
+</html>
