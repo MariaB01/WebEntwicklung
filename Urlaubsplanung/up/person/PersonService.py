@@ -7,9 +7,9 @@ class PersonService:
     @classmethod
     def __json_to_person(cls, person, json_person):
         person.name = json_person["name"]
-        person.age = json_person["age"]
-        person.gender = json_person["gender"]
-        person.fit = json_person["fit"]
+       # person.age = json_person["age"]
+       # person.gender = json_person["gender"]
+        #person.fit = json_person["fit"]
 
         return person
 
@@ -23,6 +23,7 @@ class PersonService:
     def get_person(cls, pid):
         session = DBSession.get_session()
         person = session.query(Person).get(int(pid))
+        print(person)
         return person
 
     @classmethod

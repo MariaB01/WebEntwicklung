@@ -8,10 +8,13 @@ class UrlaubsService:
         urlaubsziel.land = json_urlaubsziel["land"]
         urlaubsziel.ort = json_urlaubsziel["ort"]
         urlaubsziel.distanz = json_urlaubsziel["distanz"]
-        urlaubsziel.dauer = json_urlaubsziel["dauer"]
-        urlaubsziel.zeitraum = json_urlaubsziel["zeitraum"]
+        #urlaubsziel.dauer = json_urlaubsziel["dauer"]
+        #urlaubsziel.zeitraum = json_urlaubsziel["zeitraum"]
         urlaubsziel.transportmittel = json_urlaubsziel["transportmittel"]
         urlaubsziel.kostenrahmen = json_urlaubsziel["kostenrahmen"]
+        urlaubsziel.kurzbeschreibung= json_urlaubsziel['kurzbeschreibung']
+        urlaubsziel.startdatum=json_urlaubsziel['startdatum']
+        urlaubsziel.enddatum= json_urlaubsziel['enddatum']
         return urlaubsziel
 
     @classmethod

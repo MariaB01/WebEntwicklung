@@ -2,6 +2,7 @@ from up.person.Person import Person
 from sqlalchemy import func
 from up.data.dbsession import DBSession
 from up.relation.Vorschlag import Vorschlaege
+from up.relation.Vorschlag import PrioData
 
 class VorschlagService:
 
@@ -26,18 +27,22 @@ class VorschlagService:
     def get_vorschlaege(cls):
         session = DBSession.get_session()
         vorschlag_list = session.query(Vorschlaege).all()
+        print(vorschlag_list)
         return vorschlag_list
 
     @classmethod
     def get_sortiertprio(cls):
         session = DBSession.get_session()
         prio_list = (
-            session.query(Vorschlaege.uz_uzid, func.sum(Vorschlaege.prio))
+            session.query(Vorschlaege.uz_uzid, func.max(Vorschlaege.person_id).label('person_id'), func.sum(Vorschlaege.prio).label('prio'))
             .group_by(Vorschlaege.uz_uzid)
             .order_by(func.sum(Vorschlaege.prio).desc())
             .all()
         )
-        return prio_list
+        prio_objects = [PrioData(uz_uzid, vorschlaege_person_id, vorschlaege_prio) for
+                        uz_uzid, vorschlaege_person_id, vorschlaege_prio in prio_list]
+        #print(prio_list)
+        return prio_objects
 
 
 

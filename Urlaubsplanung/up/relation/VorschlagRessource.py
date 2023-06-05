@@ -2,6 +2,7 @@ import json
 import falcon
 
 from up.relation.VorschlagService import VorschlagService
+from up.relation.Vorschlag import PrioData
 from up.relation.Vorschlag import Vorschlaege
 
 class VorschlagRessource:
@@ -40,7 +41,9 @@ class VorschlagRessource:
 
     def on_get_sortiertprio(self, req, resp):
         vorschlag_prio_list = VorschlagService.get_sortiertprio()
-        vorschlag_dict_list = [v.to_dict() for v in vorschlag_prio_list if isinstance(v, Vorschlaege)]
+        print(vorschlag_prio_list)
+        vorschlag_dict_list = [v.to_dict_2() for v in vorschlag_prio_list]# if isinstance(v, Vorschlaege)]
+        print(vorschlag_dict_list)
         resp.text = json.dumps(vorschlag_dict_list, ensure_ascii=False, indent=2)
         resp.status = falcon.HTTP_200
 

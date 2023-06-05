@@ -17,3 +17,14 @@ class Vorschlaege(ModelBase):
         return dict(uz_uzid=self.uz_uzid,
                     person_id=self.person_id,
                     prio=self.prio)
+
+class PrioData:
+    def __init__(self, uz_uzid, vorschlaege_person_id, vorschlaege_prio):
+        self.uz_uzid = uz_uzid
+        self.person_id = vorschlaege_person_id
+        self.prio = vorschlaege_prio
+
+    def to_dict_2(self):
+        return dict(uz_uzid=self.uz_uzid,
+                    person_id=self.person_id,
+                    prio=self.prio)
