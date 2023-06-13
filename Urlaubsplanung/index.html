@@ -7,8 +7,49 @@
 </head>
 <body>
     <header>
+        <div class="dropdown_VW">
         <h1>Urlaubsplaner</h1>
-        <button id="settings-btn">Einstellungen</button>
+        <button class="admin-button" id="Verwaltungsbutton">User Verwaltung</button>
+            <div class="dropdown-content_VW">
+                <table>
+                    <tr>
+                        <th>User</th>
+                        <th>User ID</th>
+                    </tr>
+                    <tr>
+                        <td>Benutzer 1</td>
+                        <td>000001</td>
+                    </tr>
+                    <tr>
+                        <td>Benutzer 2</td>
+                        <td>000002</td>
+                    </tr>
+                    <tr>
+                        <td>Benutzer 3</td>
+                        <td>000003</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class ="dropdown-btn">Benutzer anlegen</button>
+                            <button class ="dropdown-btn">Benutzer ändern</button>
+                            <button class ="dropdown-btn">Benutzer löschen</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="dropdown">
+            <button class="admin-button" id="Loginbutton">Login</button>
+                <div class="dropdown-content">
+                    <form>
+                        <label for="Benutzername">Benutzername:</label>
+                        <input type="text" id="Benutzername" name="Benutzername" placeholder="  ">
+                        <label for="Passwort">Passwort:</label>
+                        <input type="Passwort" id="Passwort" name="Passwort" placeholder="  ">
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         <div class="table-container-1">
@@ -24,12 +65,6 @@
                         <th>Distanz in KM</th>
                         <th>Transportmittel</th>
                         <th>Kostenschätzung in €</th>
-                        <th>Vorgeschlagen von</th>
-                        <th>UrlaubsID</th>
-                        <th>Ranking Christian </th>
-                        <th>Ranking Manfred</th>
-                        <th>Ranking Marc</th>
-                        <th>Ranking Andreas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,23 +78,12 @@
                         <td><input type="text"></td>
                         <td><input type="number" min="0" value="0"></td>
                         <td>
-                            <select>
-                                <option value="Familienmitglied">Familienmitglied</option>
-                                <option value="Christian">Christian</option>
-                                <option value="Manfred">Manfred</option>
-                                <option value="Marc">Marc</option>
-                                <option value="Andreas">Andreas</option>
-                            </select>
-                        </td>
-                        <td><input type="number" min="1" max="5" value="1"></td>
-                        <td><input type="number" min="1" max="5" value="1"></td>
-                        <td><input type="number" min="1" max="5" value="1"></td>
-                        <td><input type="number" min="1" max="5" value="1"></td>
-                        <td><input type="number" min="1" max="5" value="1"></td>
                     </tr>
                 </tbody>
             </table>
-            <button id="add-row-btn">+</button>
+            <button class ="adder-btn">+ Neuer Urlaubsvorschlag</button>
+            <button class ="adder-btn">Urlaubsvorschlag ändern</button>
+            <button class ="adder-btn">Urlaubsvorschlag löschen</button>
         </div>
         <div class="table-container-2">
             <table>
