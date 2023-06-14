@@ -149,10 +149,6 @@ tbody tr:hover {
   padding: 5px;
 }
 
-
-
-
-
 .dropdown_VW {
   position: relative;
   display: inline-block;
@@ -242,4 +238,62 @@ tbody tr:hover {
   color: #04aa6d;
   background-color: #ffffff;
   font-weight: bold;
+}
+
+.table-container-middle {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 1rem;
+    overflow-x: scroll;
+    width: 100%;
+    position: relative;
+    background-color: #4ac080;
+}
+
+.table-wrapper {
+    flex: 1;
+}
+
+.BW-button {
+    margin-left: 10px;
+    background-color: #04aa6d;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.5s ease;
+    font-weight: bold;
+}
+
+.BW-button:hover {
+  color: #287ab4;
+  background-color: #ffffff;
+  font-weight: bold;
+}
+
+.white-bg {
+    background-color: white;
+    color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    width: 15%;
+}
+
+.table-container-show {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 1rem;
+  overflow-x: scroll;
+  width: 100%;
+  position: relative;
+  background-color: #4ac080;
 }
