@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Urlaubsplaner</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/ajaxfunctions.js"></script>
+
 </head>
 <body>
     <header>
@@ -11,13 +16,13 @@
         <h1>Urlaubsplaner</h1>
         <button class="admin-button" id="Verwaltungsbutton">User Verwaltung</button>
             <div class="dropdown-content_VW">
-                <table>
+                <table id="Usertabelle">
                     <tr>
-                        <th>User</th>
-                        <th>User ID</th>
+                        <th>pid</th>
+                        <th>name</th>
                     </tr>
                     <tr>
-                        <td>Benutzer 1</td>
+                        <td>Benutzer1</td>
                         <td>000001</td>
                     </tr>
                     <tr>
@@ -54,7 +59,7 @@
     <main>
         <div class="table-container-1">
             <h2>Urlaubsvorschläge</h2>
-            <table class="slider-table">
+            <table id="Urlaubzieltabelle" class="slider-table">
                 <thead>
                     <tr>
                         <th>Urlaubsziel ID</th>
@@ -361,18 +366,19 @@
         </div>
         <div class="table-container-show">
             <h2>Gesammelte Urlaubsvorschläge</h2>
-            <table class="slider-table">
+            <table id="uztable" class="slider-table">
                 <thead>
                     <tr>
-                        <th>Urlaubsziel ID</th>
-                        <th>Urlaubsort</th>
-                        <th>Urlaubsland</th>
+                        <th>uzid</th>
+                        <th>Land</th>
+                        <th>Ort</th>
+                        <th>Distanz in Km</th>
+                        <th>Transportmittel</th>
+                        <th>Kostenrahmen in EUR</th>
                         <th>Kurzbeschreibung</th>
                         <th>Startdatum</th>
                         <th>Enddatum</th>
-                        <th>Distanz in KM</th>
-                        <th>Transportmittel</th>
-                        <th>Kostenschätzung in €</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -410,11 +416,11 @@
             <button class ="BW-button">Bewertung abgeben</button>
         </div>
         <div class="table-container-2">
-            <table>
+            <table id="SortiertPrioTabelle">
                 <thead>
                     <tr>
-                        <th>Urlaubsvorschlag</th>
-                        <th>Ranking</th>
+                        <th>uzid</th>
+                        <th>Gesamtprio</th>
                     </tr>
                 </thead>
                 <tbody>

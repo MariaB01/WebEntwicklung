@@ -1,27 +1,37 @@
 //On Page load - register listeners and load existing videos in datatable
 $(document).ready(function() {
     loadDataTable();
+    loadPersonDataTable();
+    loadSortiertPrio();
     updateSelect();
     //process the form newVideo
-    $("#newVideo").submit(function(event) {
-        postVideo(event);
+    $("#newUZ").submit(function(event) {
+        postUZ(event);
     });
 
-    $('#updateVideo').submit(function(event) {
-        updateVideo(event);
+    $('#updateUZ').submit(function(event) {
+        updateUZ(event);
     });
 
-    $('#deleteVideo').click(function(event) {
-        deleteVideo(event);
+    $('#deleteUZ').click(function(event) {
+        deleteUZ(event);
     });
 
     //Load Datatable
     $('#loadtable').click(function() {
         loadDataTable();
     });
+
+    $('#loadPersonDataTable').click(function() {
+        loadDataTable();
+    });
+
+    $('#loadSortiertPrio').click(function() {
+        loadDataTable();
+    });
 });
 
-function postVideo(event) {
+function postUZ(event) {
     // get the form data
     var formData = {
         'title': $('input[name=title]').val(),
@@ -86,21 +96,63 @@ function deleteVideo(event) {
 
 
 function loadDataTable() {
-    var table = $('#videotable').DataTable({
+    var table = $('#uztable').DataTable({
         destroy: true,
         "ajax": {
-            "url": "/videos",  //URL
+            "url": "/urlaubsziele",  //URL
             "dataSrc": "" // Cause of flat JsonObjects
         },
         "columns": [
-            { "data": "vnr" },
-            { "data": "title" },
-            { "data": "description" },
-            { "data": "age_rating" },
-            { "data": "genre"}
+            { "data": "uzid" },
+            { "data": "land" },
+            { "data": "ort" },
+            { "data": "distanz" },
+            { "data": "transportmittel"},
+            { "data": "kostenrahmen"},
+            { "data": "kurzbeschreibung"},
+            { "data": "startdatum"},
+            { "data": "enddatum"}
+
+
         ]
     });
 }
+
+
+function loadPersonDataTable() {
+    var table = $('#Usertabelle').DataTable({
+        destroy: true,
+        "ajax": {
+            "url": "/persons",  //URL
+            "dataSrc": "" // Cause of flat JsonObjects
+        },
+        "columns": [
+            { "data": "pid" },
+            { "data": "name" },
+
+
+
+        ]
+    });
+}
+
+function loadSortiertPrio() {
+    var table = $('#SortiertPrioTabelle').DataTable({
+        destroy: true,
+        "ajax": {
+            "url": "/sortiertprio",  //URL
+            "dataSrc": "" // Cause of flat JsonObjects
+        },
+        "columns": [
+            { "data": "uz_uzid" },
+            { "data": "prio" },
+
+
+
+        ]
+    });
+}
+
 
 function updateSelect() {
     $.ajax({

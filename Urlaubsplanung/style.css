@@ -6,7 +6,7 @@ html, body {
 
 body {
   font-family: Roboto, sans-serif;
-  color: #ffffff;
+  color: #111111;
   background-image: url('vaca_background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -244,6 +244,7 @@ tbody tr:hover {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    background-color: #4ac080;
     border: 1px solid #ddd;
     border-radius: 10px;
     margin: 1rem;
