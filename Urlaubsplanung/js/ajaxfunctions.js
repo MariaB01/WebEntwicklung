@@ -5,9 +5,10 @@ $(document).ready(function() {
     loadSortiertPrio();
     updateSelect();
     //process the form newVideo
-    $("#newUZ").submit(function(event) {
+    $("#NeuesUrlaubzieltabelle").submit(function(event) {
+        alert('vor Click');
         postUZ(event);
-    });
+    })
 
     $('#updateUZ').submit(function(event) {
         updateUZ(event);
@@ -32,32 +33,43 @@ $(document).ready(function() {
 });
 
 function postUZ(event) {
-    // get the form data
-    var formData = {
-        'title': $('input[name=title]').val(),
-        'description': $('textarea[name=description]').val(),
-        'age_rating': $('input[name=age_rating]').val(),
-        'genre': $('input[name=genre]').val()
-    };
-    // process the form
+
+alert($('input[name="UrlaubszielNeu"]').val());
+alert($('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val());
+alert($('#NeuesUrlaubzieltabelle select[name="land"]').val());
+
+    // Holen Sie die Formulardaten
+var formData = {
+    'ort': $('input[name="UrlaubszielNeu"]').val(),
+    'land': $('#NeuesUrlaubzieltabelle select[name="land"]').val(),
+    'kurzbeschreibung': $('#NeuesUrlaubzieltabelle input[name="Kurzbeschreibung"]').val(),
+    'startdatum': $('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val(),
+    'enddatum': $('#NeuesUrlaubzieltabelle input[name="Enddatum"]').val(),
+    'distanz': $('#NeuesUrlaubzieltabelle input[name="Distanz"]').val(),
+    'transportmittel': $('#NeuesUrlaubzieltabelle select[name="Transportmittel"]').val(),
+    'kostenrahmen': $('#NeuesUrlaubzieltabelle input[name="Kosten"]').val()
+};
+    alert(JSON.stringify(formData));
+    // Verarbeiten Sie das Formular
     $.ajax({
-        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        contentType : 'application/json',
-        url: '/video', //url where we want to POST
-        data: JSON.stringify(formData), // data we want to POST
-        success: function( data, textStatus, jQxhr ){
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/urlaubsziel',
+        data: JSON.stringify(formData),
+        success: function(data, textStatus, jQxhr) {
             loadDataTable();
             updateSelect();
         },
-        error: function( jqXhr, textStatus, errorThrown ){
+        error: function(jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
         }
     });
-    // stop the form from submitting the normal way and refreshing the page
+
+    // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
     event.preventDefault();
 }
 
-function updateVideo(event) {
+function updateUZ(event) {
     var id = $('#vnr').val();
     var updatedData = {
         'title': $('input[name=title_update]').val(),
@@ -78,7 +90,7 @@ function updateVideo(event) {
     });
 }
 
-function deleteVideo(event) {
+function deleteUZ(event) {
     var id = $('#vnr_del').val();
 
     $.ajax({
@@ -104,14 +116,14 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "uzid" },
-            { "data": "land" },
             { "data": "ort" },
-            { "data": "distanz" },
-            { "data": "transportmittel"},
-            { "data": "kostenrahmen"},
-            { "data": "kurzbeschreibung"},
+            { "data": "land" },
+            { "data": "kurzbeschreibung" },
             { "data": "startdatum"},
-            { "data": "enddatum"}
+            { "data": "enddatum"},
+            { "data": "distanz"},
+            { "data": "transportmittel"},
+            { "data": "kostenrahmen"}
 
 
         ]
@@ -156,7 +168,7 @@ function loadSortiertPrio() {
 
 function updateSelect() {
     $.ajax({
-    url: "/videonumbers", // replace with your server-side script URL
+    url: "/", // replace with your server-side script URL
     type: "GET",
     dataType: "json",
     success: function(data) {

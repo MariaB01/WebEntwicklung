@@ -8,7 +8,6 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/ajaxfunctions.js"></script>
-
 </head>
 <body>
     <header>
@@ -16,13 +15,13 @@
         <h1>Urlaubsplaner</h1>
         <button class="admin-button" id="Verwaltungsbutton">User Verwaltung</button>
             <div class="dropdown-content_VW">
-                <table id="Usertabelle">
+                <table>
                     <tr>
-                        <th>pid</th>
-                        <th>name</th>
+                        <th>User</th>
+                        <th>User ID</th>
                     </tr>
                     <tr>
-                        <td>Benutzer1</td>
+                        <td>Benutzer 1</td>
                         <td>000001</td>
                     </tr>
                     <tr>
@@ -49,7 +48,7 @@
                         <label for="Benutzername">Benutzername:</label>
                         <input type="text" id="Benutzername" name="Benutzername" placeholder="  ">
                         <label for="Passwort">Passwort:</label>
-                        <input type="Passwort" id="Passwort" name="Passwort" placeholder="  ">
+                        <input type="password" id="Passwort" name="Passwort" placeholder="  ">
                         <input type="submit" value="Login">
                     </form>
                 </div>
@@ -59,26 +58,27 @@
     <main>
         <div class="table-container-1">
             <h2>Urlaubsvorschläge</h2>
-            <table id="Urlaubzieltabelle" class="slider-table">
-                <thead>
-                    <tr>
-                        <th>Urlaubsziel ID</th>
-                        <th>Urlaubsort</th>
-                        <th>Urlaubsland</th>
-                        <th>Kurzbeschreibung</th>
-                        <th>Startdatum</th>
-                        <th>Enddatum</th>
-                        <th>Distanz in KM</th>
-                        <th>Transportmittel</th>
-                        <th>Kostenschätzung in €</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="white-bg" >ID</td>
-                        <td><input type="text"></td>
-                        <td>
-                            <select>
+            <form id="NeuesUrlaubzieltabelle">
+                <table class="slider-table">
+                    <thead>
+                        <tr>
+                            <th>Urlaubsziel ID</th>
+                            <th>Urlaubsort</th>
+                            <th>land</th>
+                            <th>Kurzbeschreibung</th>
+                            <th>Startdatum</th>
+                            <th>Enddatum</th>
+                            <th>Distanz in KM</th>
+                            <th>Transportmittel</th>
+                            <th>Kostenschätzung in EUR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="white-bg" >ID</td>
+                            <td><input type="text" name="UrlaubszielNeu" required="required"></td>
+                            <td>
+                            <select id= "landNeu" name="land" required="required">
                                 <option value="" selected disabled hidden></option>
                                 <option value="Afghanistan">Afghanistan</option>
                                 <option value="Aland Islands">Aland Islands</option>
@@ -333,52 +333,49 @@
                                 <option value="Zambia">Sambia</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
-                        </td>
-                        <td><input type="text"></td>
-                        <td><input type="date"></td>
-                        <td><input type="date"></td>
-                        <td><input type="number" min="0" value="0"></td>
-                        <td>
-                            <select>
-                                <option value="" selected disabled hidden></option>
-                                <option value="Auto">Auto</option>
-                                <option value="Motorrad">Motorrad</option>
-                                <option value="Wohnmobil">Wohnmobil</option>
-                                <option value="Camper">Camper</option>
-                                <option value="Zug">Zug</option>
-                                <option value="Bus">Bus</option>
-                                <option value="Flugzeug">Flugzeug</option>
-                                <option value="cruise">Kreuzfahrtschiff</option>
-                                <option value="Fähre">Fähre</option>
-                                <option value="Fahrrad">Fahrrad</option>
-                                <option value="Hubschrauber">Hubschrauber</option>
-                                <option value="hot-air-balloon">Heißluftballon</option>
-                             </select>
-                        </td>
-                        <td><input type="number" min="0" value="0"></td>
-                        <td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class ="adder-btn">+ Neuer Urlaubsvorschlag</button>
-            <button class ="adder-btn">Urlaubsvorschlag ändern</button>
-            <button class ="adder-btn">Urlaubsvorschlag löschen</button>
+                            </td>
+                            <td><input type="text" name="Kurzbeschreibung" required="required"></td>
+                            <td><input type="date" name="Startdatum"></td>
+                            <td><input type="date" name="Enddatum"></td>
+                            <td><input type="number" min="0" value="0" name="Distanz"></td>
+                            <td>
+                                <select name="Transportmittel" required="required">
+                                    <option value="" selected disabled hidden></option>
+                                    <option value="Auto">Auto</option>
+                                    <option value="Motorrad">Motorrad</option>
+                                    <option value="Wohnmobil">Wohnmobil</option>
+                                    <option value="Camper">Camper</option>
+                                    <option value="Zug">Zug</option>
+                                    <option value="Bus">Bus</option>
+                                    <option value="Flugzeug">Flugzeug</option>
+                                    <option value="cruise">Kreuzfahrtschiff</option>
+                                    <option value="Fähre">Fähre</option>
+                                    <option value="Fahrrad">Fahrrad</option>
+                                    <option value="Hubschrauber">Hubschrauber</option>
+                                    <option value="Heißluftballon">Heißluftballon</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" value="0" name="Kosten"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <input  type="submit" value="+ Neuer Urlaubsvorschlag" id="newUZButton">
+            </form>
         </div>
         <div class="table-container-show">
             <h2>Gesammelte Urlaubsvorschläge</h2>
             <table id="uztable" class="slider-table">
                 <thead>
                     <tr>
-                        <th>uzid</th>
-                        <th>Land</th>
-                        <th>Ort</th>
-                        <th>Distanz in Km</th>
-                        <th>Transportmittel</th>
-                        <th>Kostenrahmen in EUR</th>
+                        <th>Urlaubsziel ID</th>
+                        <th>Urlaubsort</th>
+                        <th>Urlaubsland</th>
                         <th>Kurzbeschreibung</th>
                         <th>Startdatum</th>
                         <th>Enddatum</th>
-
+                        <th>Distanz in KM</th>
+                        <th>Transportmittel</th>
+                        <th>Kostenschätzung in EUR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -395,6 +392,8 @@
                     </tr>
                 </tbody>
             </table>
+            <button class ="adder-btn">Urlaubsvorschlag ändern</button>
+            <button class ="adder-btn">Urlaubsvorschlag löschen</button>
         </div>
         <div class="table-container-middle">
             <table>
@@ -419,8 +418,8 @@
             <table id="SortiertPrioTabelle">
                 <thead>
                     <tr>
-                        <th>uzid</th>
-                        <th>Gesamtprio</th>
+                        <th>Urlaubsvorschlag</th>
+                        <th>Ranking</th>
                     </tr>
                 </thead>
                 <tbody>
