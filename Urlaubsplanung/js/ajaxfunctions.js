@@ -10,7 +10,8 @@ $(document).ready(function() {
         postUZ(event);
     })
 
-    $('#updateUZ').submit(function(event) {
+    $('#UpdateNeuesUrlaubzieltabelle').submit(function(event) {
+        alert('vor Click');
         updateUZ(event);
     });
 
@@ -34,9 +35,9 @@ $(document).ready(function() {
 
 function postUZ(event) {
 
-alert($('input[name="UrlaubszielNeu"]').val());
-alert($('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val());
-alert($('#NeuesUrlaubzieltabelle select[name="land"]').val());
+alert($('input[name="updateUrlaubszielNeu"]').val());
+alert($('#NeuesUrlaubzieltabelle input[name="updateStartdatum"]').val());
+alert($('#NeuesUrlaubzieltabelle select[name="updateland"]').val());
 
     // Holen Sie die Formulardaten
 var formData = {
@@ -70,15 +71,24 @@ var formData = {
 }
 
 function updateUZ(event) {
-    var id = $('#vnr').val();
+alert($('input[name="updateUrlaubszielNeu"]').val());
+alert($('input[name="updateStartdatum"]').val());
+alert($('select[name="updateland"]').val());
+
+    var id = $('#uzid').val();
     var updatedData = {
-        'title': $('input[name=title_update]').val(),
-        'description': $('textarea[name=description_update]').val(),
-        'age_rating': $('input[name=age_rating_update]').val(),
-        'genre': $('input[name=genre_update]').val()
+
+        'ort': $('input[name="updateUrlaubszielNeu"]').val(),
+        'land': $('#UpdateNeuesUrlaubzieltabelle select[name="updateland"]').val(),
+        'kurzbeschreibung': $('#UpdateNeuesUrlaubzieltabelle input[name="updateKurzbeschreibung"]').val(),
+        'startdatum': $('#UpdateNeuesUrlaubzieltabelle input[name="updateStartdatum"]').val(),
+        'enddatum': $('#UpdateNeuesUrlaubzieltabelle input[name="updateEnddatum"]').val(),
+        'distanz': $('#UpdateNeuesUrlaubzieltabelle input[name="updateDistanz"]').val(),
+        'transportmittel': $('#UpdateNeuesUrlaubzieltabelle select[name="updateTransportmittel"]').val(),
+        'kostenrahmen': $('#UpdateNeuesUrlaubzieltabelle input[name="updateKosten"]').val()
     };
     $.ajax({
-      url: '/video/' + id,
+      url: '/urlaubsziel/' + id,
       type: 'PUT',
       data: JSON.stringify(updatedData),
       success: function(updatedData) {
