@@ -25,7 +25,19 @@ $(document).ready(function() {
       alert('vor Click');
       postVorschlag(event);
     });
+  $('#Benutzer_neu').click(function() {
+        postPerson();
+    });
 
+  $('#Benutzer_upd').click(function() {
+        alert("geht");
+        updatePerson();
+    });
+
+     $('#Benutzer_del').click(function() {
+        alert("geht");
+        deletePerson();
+    });
     //Load Datatable
     $('#loadtable').click(function() {
         loadDataTable();
@@ -152,7 +164,7 @@ function loadDataTable() {
 
 
 function loadPersonDataTable() {
-    var table = $('#Usertabelle').DataTable({
+    var table = $('#PersonDataTable').DataTable({
         destroy: true,
         "ajax": {
             "url": "/persons",  //URL
@@ -218,6 +230,98 @@ var formData = {
     event.preventDefault();
 }
 
+function postPerson(event) {
+
+alert($('input[name="pname"]').val());
+//alert($('#personen_pflege_tabelle input[name="pid"]').val());
+
+    // Holen Sie die Formulardaten
+var formData = {
+    'name': $('input[name="pname"]').val()
+
+    };
+    alert(JSON.stringify(formData));
+    // Verarbeiten Sie das Formular
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/person',
+        data: JSON.stringify(formData),
+        success: function(data, textStatus, jQxhr) {
+            loadPersonDataTable();
+            updateSelect();
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+            console.log(errorThrown);
+            alert("Fehler");
+        }
+    });
+
+    // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
+    event.preventDefault();
+}
+
+
+function updatePerson(event) {
+
+alert($('input[name="pname"]').val());
+//alert($('#personen_pflege_tabelle input[name="pid"]').val());
+var id = $('#pid').val();
+    // Holen Sie die Formulardaten
+var formData = {
+    'pid': $('input[name="pid"]').val(),
+    'name': $('input[name="pname"]').val()
+
+    };
+    alert(JSON.stringify(formData));
+    // Verarbeiten Sie das Formular
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: '/person/'+id,
+        data: JSON.stringify(formData),
+        success: function(data, textStatus, jQxhr) {
+            loadPersonDataTable();
+            updateSelect();
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+            console.log(errorThrown);
+            alert("Fehler");
+        }
+    });
+
+    // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
+    event.preventDefault();
+}
+
+
+function deletePerson(event) {
+
+alert($('input[name="pid"]').val());
+//alert($('#personen_pflege_tabelle input[name="pid"]').val());
+var id = $('#pid').val();
+    // Holen Sie die Formulardaten
+
+    alert(JSON.stringify());
+    // Verarbeiten Sie das Formular
+    $.ajax({
+        type: 'DELETE',
+        contentType: 'application/json',
+        url: '/person/'+id,
+        data: JSON.stringify(),
+        success: function(data, textStatus, jQxhr) {
+            loadPersonDataTable();
+            updateSelect();
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+            console.log(errorThrown);
+            alert("Fehler");
+        }
+    });
+
+    // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
+    event.preventDefault();
+}
 
 function updateSelect() {
     $.ajax({
