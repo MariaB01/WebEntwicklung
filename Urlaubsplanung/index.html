@@ -64,7 +64,7 @@
                         <tr>
                             <th>Urlaubsziel ID</th>
                             <th>Urlaubsort</th>
-                            <th>land</th>
+                            <th>Urlaubsland</th>
                             <th>Kurzbeschreibung</th>
                             <th>Startdatum</th>
                             <th>Enddatum</th>
@@ -394,24 +394,28 @@
             </table>
         </div>
         <div class="table-container-middle">
-            <table>
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Urlaubsziel ID</th>
-                        <th>Priorität</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="white-bg" >ID</td>
-                        <td class="white-bg" >ID</td>
-                        <td><input type="number" min="0" max="10" value="0"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class ="BW-button">Bewertung abgeben</button>
+            <form id="vorschlag_anlegen">
+                <table >
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Urlaubsziel ID</th>
+                            <th>Priorität</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" name="vorschlag_pid" required="required" id="vorschlag_pid"></td>
+                            <td><input type="number" name="vorschlag_uzid" required="required"></td>
+                            <td><input type="number" min="0" max="10" value="0" name="vorschlag_prio"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            <input  type="submit" value="/ Bewertung abgeben" id="vorschlag_abgeben">
+            </form>
         </div>
+
         <div class="table-container-2">
             <table id="SortiertPrioTabelle">
                 <thead>
@@ -734,12 +738,25 @@
                     <input  type="submit" value="/ Urlaubsvorschlag ändern" id="updateUZ">
             </form>
         </div>
-        <section class="table-container-1">
+
         <h1>Urlaubsvorschlag Löschen</h1>
-            <label for="Urlaub Number Delete">Urlaub ID</label>
-            <select name="Urlaub Number Delete" id="unr_del"></select><br>
-            <button id="deleteUrlaub">- Urlaubsvorschlag löschen</button>
-        </section>
+            <form id="uz_delete">
+                <table >
+                    <thead>
+                        <tr>
+                            <th>Urlaubsziel ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <input type="number" name="uzid_del" required="required" id="uzid_del"></input>
+                        </tr>
+                    </tbody>
+                </table>
+                <input  type="submit" value="/ Urlaubsvorschlag löschen" id="deleteUZ">
+            </form>
+
+
     </main>
     <script src="script.js"></script>
 </body>

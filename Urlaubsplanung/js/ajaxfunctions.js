@@ -15,8 +15,15 @@ $(document).ready(function() {
         updateUZ(event);
     });
 
-    $('#deleteUZ').click(function(event) {
-        deleteUZ(event);
+  $('#uz_delete').submit(function(event) {
+      alert('vor Click');
+      deleteUrlaubsvorschlag();
+    });
+
+
+  $("#vorschlag_anlegen").submit(function(event) {
+      alert('vor Click');
+      postVorschlag(event);
     });
 
     //Load Datatable
@@ -36,8 +43,8 @@ $(document).ready(function() {
 function postUZ(event) {
 
 alert($('input[name="updateUrlaubszielNeu"]').val());
-alert($('#NeuesUrlaubzieltabelle input[name="updateStartdatum"]').val());
-alert($('#NeuesUrlaubzieltabelle select[name="updateland"]').val());
+alert($('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val());
+alert($('#NeuesUrlaubzieltabelle select[name="land"]').val());
 
     // Holen Sie die Formulardaten
 var formData = {
@@ -93,28 +100,31 @@ alert($('select[name="updateland"]').val());
       data: JSON.stringify(updatedData),
       success: function(updatedData) {
         loadDataTable();
+
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.error('Error updating entry with ID ${id}: ${errorThrown}');
       }
     });
-}
 
-function deleteUZ(event) {
-    var id = $('#vnr_del').val();
+}
+function deleteUrlaubsvorschlag() {
+    alert($('input[name="uzid_del"]').val());
+    var id = $('#uzid_del').val();
 
     $.ajax({
-      url: '/video/' + id,
-      type: 'DELETE',
-      success: function() {
-        loadDataTable();
-        updateSelect();
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.error('Error deleting instance with ID ${instanceId}: ${errorThrown}');
-      }
-    });
-}
+        url: '/urlaubsziel/' + id,
+        type: 'DELETE',
+        success: function(id) {
+          loadDataTable();
+          loadSortiertPrio();
+          updateSelect();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Fehler beim Löschen der Instanz mit der ID ' + id + ': ' + errorThrown);
+        }
+      });
+    }
 
 
 function loadDataTable() {
@@ -173,6 +183,39 @@ function loadSortiertPrio() {
 
         ]
     });
+}
+
+function postVorschlag(event) {
+
+alert($('input[name="vorschlag_pid"]').val());
+alert($('#vorschlag_anlegen input[name="vorschlag_uzid"]').val());
+alert($('#vorschlag_anlegen input[name="vorschlag_prio"]').val());
+
+    // Holen Sie die Formulardaten
+var formData = {
+    'person_id': $('#vorschlag_anlegen input[name="vorschlag_pid"]').val(),
+    'uz_uzid': $('#vorschlag_anlegen input[name="vorschlag_uzid"]').val(),
+    'prio': $('#vorschlag_anlegen input[name="vorschlag_prio"]').val()
+
+};
+    alert(JSON.stringify(formData));
+    // Verarbeiten Sie das Formular
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/vorschlag',
+        data: JSON.stringify(formData),
+        success: function(data, textStatus, jQxhr) {
+            loadSortiertPrio();
+            updateSelect();
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+
+    // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
+    event.preventDefault();
 }
 
 
