@@ -17,8 +17,8 @@ class Urlaubsziel(ModelBase):
     transportmittel = sa.Column('transportmittel', sa.String, nullable=False)
     kostenrahmen = sa.Column('kostenrahmen', sa.String, nullable=False)
     kurzbeschreibung = sa.Column('kurzbeschreibung', sa.String, nullable=False)
-    startdatum=sa.Column('startdatum', sa.Date, nullable=False)
-    enddatum=sa.Column('enddatum', sa.Date, nullable=False)
+    startdatum=sa.Column('startdatum', sa.String, nullable=False)
+    enddatum=sa.Column('enddatum', sa.String, nullable=False)
 
 
 

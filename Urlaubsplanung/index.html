@@ -11,10 +11,13 @@
 </head>
 <body>
     <header>
-        <div class="dropdown_VW">
-        <h1>Urlaubsplaner</h1>
-        <button class="admin-button" id="Verwaltungsbutton">User anzeigen</button>
-            <div class="dropdown-content_VW">
+      <div class="dropdown-container">
+         <div class = "dropdown" >
+            <h1>Urlaubsplaner</h1>
+         </div>
+         <div class="dropdown">
+            <button class="admin-button" id="Verwaltungsbutton">User anzeigen</button>
+            <div class="dropdown-content">
                 <table id="PersonDataTable">
                     <tr>
                         <th>User</th>
@@ -33,20 +36,16 @@
                         <td>000003</td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-
-                        </td>
+                        <td colspan="2"></td>
                     </tr>
                 </table>
-
+              </div>
             </div>
              <div class="dropdown">
-            <button class="admin-button" id="Userbutton">User pflegen</button>
-                <div class="dropdown-content_VW">
-
+            <button class="admin-button" id="Userbutton">User verwalten</button>
+                <div class="dropdown-content">
                     <form id="personen_pflege_tabelle">
                         <table>
-
                     <tr>
                         <td><label for="pid">BenutzerID:</label></td>
                         <td><input type="text" id="pid" name="pid" placeholder="  "></td>
@@ -57,9 +56,9 @@
                             </tr>
                 </table>
                     </form>
-                     <button class ="dropdown-btn" id="Benutzer_neu">Benutzer anlegen</button>
-                    <button class ="dropdown-btn" id="Benutzer_upd">Benutzer ändern</button>
-                    <button class ="dropdown-btn"id="Benutzer_del">Benutzer löschen</button>
+                        <button class ="dropdown-btn" id="Benutzer_neu">Benutzer anlegen</button>
+                        <button class ="dropdown-btn" id="Benutzer_upd">Benutzer ändern</button>
+                        <button class ="dropdown-btn" id="Benutzer_del">Benutzer löschen</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -381,12 +380,10 @@
                         </tr>
                     </tbody>
                 </table>
-
-
             </form>
-            <button class ="dropdown-btn" id="newUZButton"> + Neuer Urlaubsvorschlag</button>
-                    <button class ="dropdown-btn" id="updateUZ">/ Urlaubsvorschlag ändern</button>
-                    <button class ="dropdown-btn"id="deleteUZ">/ Urlaubsvorschlag löschen</button>
+                    <button class ="dropdown-btn" id="newUZButton"> + Neuer Urlaubsvorschlag</button>
+                    <button class ="dropdown-btn" id="updateUZ"> Urlaubsvorschlag ändern</button>
+                    <button class ="dropdown-btn"id="deleteUZ"> Urlaubsvorschlag löschen</button>
         </div>
         <div class="table-container-show">
             <h2>Gesammelte Urlaubsvorschläge</h2>
@@ -437,11 +434,9 @@
                         </tr>
                     </tbody>
                 </table>
-
-            <input  type="submit" value="/ Bewertung abgeben" id="vorschlag_abgeben">
+            <input class ="dropdown-btn" type="submit" value="Bewertung abgeben" id="vorschlag_abgeben">
             </form>
         </div>
-
         <div class="table-container-2">
             <table id="SortiertPrioTabelle">
                 <thead>
@@ -458,9 +453,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
     </main>
     <script src="script.js"></script>
 </body>
