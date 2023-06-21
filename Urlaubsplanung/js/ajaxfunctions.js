@@ -5,18 +5,18 @@ $(document).ready(function() {
     loadSortiertPrio();
     updateSelect();
     //process the form newVideo
-    $("#NeuesUrlaubzieltabelle").submit(function(event) {
-        alert('vor Click');
+    $("#newUZButton").click(function(event) {
+        alert('anlegen');
         postUZ(event);
     })
 
-    $('#UpdateNeuesUrlaubzieltabelle').submit(function(event) {
-        alert('vor Click');
+    $('#updateUZ').click(function(event) {
+        alert('update');
         updateUZ(event);
     });
 
-  $('#uz_delete').submit(function(event) {
-      alert('vor Click');
+  $('#deleteUZ').click(function(event) {
+      alert('löschen');
       deleteUrlaubsvorschlag();
     });
 
@@ -61,13 +61,13 @@ alert($('#NeuesUrlaubzieltabelle select[name="land"]').val());
     // Holen Sie die Formulardaten
 var formData = {
     'ort': $('input[name="UrlaubszielNeu"]').val(),
-    'land': $('#NeuesUrlaubzieltabelle select[name="land"]').val(),
-    'kurzbeschreibung': $('#NeuesUrlaubzieltabelle input[name="Kurzbeschreibung"]').val(),
-    'startdatum': $('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val(),
-    'enddatum': $('#NeuesUrlaubzieltabelle input[name="Enddatum"]').val(),
-    'distanz': $('#NeuesUrlaubzieltabelle input[name="Distanz"]').val(),
-    'transportmittel': $('#NeuesUrlaubzieltabelle select[name="Transportmittel"]').val(),
-    'kostenrahmen': $('#NeuesUrlaubzieltabelle input[name="Kosten"]').val()
+    'land': $('select[name="land"]').val(),
+    'kurzbeschreibung': $(' input[name="Kurzbeschreibung"]').val(),
+    'startdatum': $('input[name="Startdatum"]').val(),
+    'enddatum': $(' input[name="Enddatum"]').val(),
+    'distanz': $(' input[name="Distanz"]').val(),
+    'transportmittel': $(' select[name="Transportmittel"]').val(),
+    'kostenrahmen': $(' input[name="Kosten"]').val()
 };
     alert(JSON.stringify(formData));
     // Verarbeiten Sie das Formular
@@ -90,29 +90,30 @@ var formData = {
 }
 
 function updateUZ(event) {
-alert($('input[name="updateUrlaubszielNeu"]').val());
-alert($('input[name="updateStartdatum"]').val());
-alert($('select[name="updateland"]').val());
+alert($('input[name="UrlaubszielNeu"]').val());
+alert($('input[name="Startdatum"]').val());
+alert($('select[name="land"]').val());
 
     var id = $('#uzid').val();
     var updatedData = {
 
-        'ort': $('input[name="updateUrlaubszielNeu"]').val(),
-        'land': $('#UpdateNeuesUrlaubzieltabelle select[name="updateland"]').val(),
-        'kurzbeschreibung': $('#UpdateNeuesUrlaubzieltabelle input[name="updateKurzbeschreibung"]').val(),
-        'startdatum': $('#UpdateNeuesUrlaubzieltabelle input[name="updateStartdatum"]').val(),
-        'enddatum': $('#UpdateNeuesUrlaubzieltabelle input[name="updateEnddatum"]').val(),
-        'distanz': $('#UpdateNeuesUrlaubzieltabelle input[name="updateDistanz"]').val(),
-        'transportmittel': $('#UpdateNeuesUrlaubzieltabelle select[name="updateTransportmittel"]').val(),
-        'kostenrahmen': $('#UpdateNeuesUrlaubzieltabelle input[name="updateKosten"]').val()
+        'ort': $('input[name="UrlaubszielNeu"]').val(),
+        'land': $(' select[name="land"]').val(),
+        'kurzbeschreibung': $('input[name="Kurzbeschreibung"]').val(),
+        'startdatum': $(' input[name="Startdatum"]').val(),
+        'enddatum': $(' input[name="Enddatum"]').val(),
+        'distanz': $('input[name="Distanz"]').val(),
+        'transportmittel': $('select[name="Transportmittel"]').val(),
+        'kostenrahmen': $(' input[name="Kosten"]').val()
     };
     $.ajax({
       url: '/urlaubsziel/' + id,
       type: 'PUT',
+      contentType: 'application/json',
       data: JSON.stringify(updatedData),
-      success: function(updatedData) {
+      success: function(data,textStatus, jQxhr) {
         loadDataTable();
-
+        updateSelect();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.error('Error updating entry with ID ${id}: ${errorThrown}');
@@ -120,14 +121,16 @@ alert($('select[name="updateland"]').val());
     });
 
 }
-function deleteUrlaubsvorschlag() {
-    alert($('input[name="uzid_del"]').val());
-    var id = $('#uzid_del').val();
+function deleteUrlaubsvorschlag(event) {
+    alert($('input[name="uzid"]').val());
+    var id = $('#uzid').val();
 
     $.ajax({
-        url: '/urlaubsziel/' + id,
         type: 'DELETE',
-        success: function(id) {
+        contentType: 'application/json',
+        url: '/urlaubsziel/'+id,
+        data: JSON.stringify(),
+        success: function(data, textStatus, jQxhr) {
           loadDataTable();
           loadSortiertPrio();
           updateSelect();
