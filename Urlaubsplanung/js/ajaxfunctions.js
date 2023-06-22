@@ -1,63 +1,40 @@
-//On Page load - register listeners and load existing videos in datatable
 $(document).ready(function() {
-    loadDataTable();
-    loadPersonDataTable();
-    loadSortiertPrio();
+    loadDataTable(); //Funktion zum Laden der Urlaubszieldaten in eine Tabelle
+    loadPersonDataTable(); //Funktion zum Laden der Personendaten in eine Tabelle
+    loadSortiertPrio(); //Funktion zum Laden der sortierten Prioritätsdaten in eine Tabelle
     updateSelect();
-    //process the form newVideo
+    // Verarbeite das Formular "postUZ" beim Klicken auf den Button "#newUZButton"
     $("#newUZButton").click(function(event) {
-        alert('anlegen');
         postUZ(event);
     })
-
+    // Verarbeite das Formular "updateUZ" beim Klicken auf den Button "#updateUZ"
     $('#updateUZ').click(function(event) {
-        alert('update');
         updateUZ(event);
     });
-
+    // Verarbeite das Formular "deleteUrlaubsvorschlag" beim Klicken auf den Button "#deleteUz"
   $('#deleteUZ').click(function(event) {
-      alert('löschen');
       deleteUrlaubsvorschlag();
     });
-
-
+  // Verarbeite das Formular "postVorschlag" beim Absenden des Formulars
   $("#vorschlag_anlegen").submit(function(event) {
-      alert('vor Click');
       postVorschlag(event);
     });
+      // Verarbeite das Formular "postPerson" beim Klicken auf den Button "#Benutzer_neu"
   $('#Benutzer_neu').click(function() {
         postPerson();
     });
-
+  // Verarbeite das Formular "updatePerson" beim Klicken auf den Button "#Benutzer_upd"
   $('#Benutzer_upd').click(function() {
-        alert("geht");
         updatePerson();
     });
-
+  // Verarbeite das Formular "deletePerson" beim Klicken auf den Button "#Benutzer_upd"
      $('#Benutzer_del').click(function() {
-        alert("geht");
         deletePerson();
     });
-    //Load Datatable
-    $('#loadtable').click(function() {
-        loadDataTable();
-    });
 
-    $('#loadPersonDataTable').click(function() {
-        loadDataTable();
-    });
-
-    $('#loadSortiertPrio').click(function() {
-        loadDataTable();
-    });
 });
-
+// Funktion zum Hinzufügen einer neuen Urlaubsziel-Instanz
 function postUZ(event) {
-
-alert($('input[name="updateUrlaubszielNeu"]').val());
-alert($('#NeuesUrlaubzieltabelle input[name="Startdatum"]').val());
-alert($('#NeuesUrlaubzieltabelle select[name="land"]').val());
-
     // Holen Sie die Formulardaten
 var formData = {
     'ort': $('input[name="UrlaubszielNeu"]').val(),
@@ -69,7 +46,6 @@ var formData = {
     'transportmittel': $(' select[name="Transportmittel"]').val(),
     'kostenrahmen': $(' input[name="Kosten"]').val()
 };
-    alert(JSON.stringify(formData));
     // Verarbeiten Sie das Formular
     $.ajax({
         type: 'POST',
@@ -88,12 +64,9 @@ var formData = {
     // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
     event.preventDefault();
 }
-
+// Funktion zum Updaten einer Urlaubsziel-Instanz
 function updateUZ(event) {
-alert($('input[name="UrlaubszielNeu"]').val());
-alert($('input[name="Startdatum"]').val());
-alert($('select[name="land"]').val());
-
+    // Holen Sie die Formulardaten
     var id = $('#uzid').val();
     var updatedData = {
 
@@ -106,6 +79,7 @@ alert($('select[name="land"]').val());
         'transportmittel': $('select[name="Transportmittel"]').val(),
         'kostenrahmen': $(' input[name="Kosten"]').val()
     };
+        // Verarbeiten Sie das Formular
     $.ajax({
       url: '/urlaubsziel/' + id,
       type: 'PUT',
@@ -121,10 +95,12 @@ alert($('select[name="land"]').val());
     });
 
 }
-function deleteUrlaubsvorschlag(event) {
-    alert($('input[name="uzid"]').val());
-    var id = $('#uzid').val();
+// Funktion zum Löschen einer Urlaubsziel-Instanz
 
+function deleteUrlaubsvorschlag(event) {
+    // Holen Sie die Formulardaten
+    var id = $('#uzid').val();
+        // Verarbeiten Sie das Formular
     $.ajax({
         type: 'DELETE',
         contentType: 'application/json',
@@ -141,7 +117,7 @@ function deleteUrlaubsvorschlag(event) {
       });
     }
 
-
+// Funktion zum Laden der Urlaubszieltabelle
 function loadDataTable() {
     var table = $('#uztable').DataTable({
         destroy: true,
@@ -165,7 +141,7 @@ function loadDataTable() {
     });
 }
 
-
+// Funktion zum Laden der Personentabelle
 function loadPersonDataTable() {
     var table = $('#PersonDataTable').DataTable({
         destroy: true,
@@ -182,7 +158,7 @@ function loadPersonDataTable() {
         ]
     });
 }
-
+// Funktion zum Laden der Gesamtprioritätenltabelle
 function loadSortiertPrio() {
     var table = $('#SortiertPrioTabelle').DataTable({
         destroy: true,
@@ -196,24 +172,18 @@ function loadSortiertPrio() {
 
 
 
-        ]
+        ],
+        "order": [[1, "desc"]] // Sortiere nach dem zweiten Spaltenindex (prio) absteigend
     });
 }
-
+// Funktion zum Hinzufügen einer neuen Priorität
 function postVorschlag(event) {
-
-alert($('input[name="vorschlag_pid"]').val());
-alert($('#vorschlag_anlegen input[name="vorschlag_uzid"]').val());
-alert($('#vorschlag_anlegen input[name="vorschlag_prio"]').val());
-
     // Holen Sie die Formulardaten
 var formData = {
     'person_id': $('#vorschlag_anlegen input[name="vorschlag_pid"]').val(),
     'uz_uzid': $('#vorschlag_anlegen input[name="vorschlag_uzid"]').val(),
     'prio': $('#vorschlag_anlegen input[name="vorschlag_prio"]').val()
-
 };
-    alert(JSON.stringify(formData));
     // Verarbeiten Sie das Formular
     $.ajax({
         type: 'POST',
@@ -233,17 +203,13 @@ var formData = {
     event.preventDefault();
 }
 
+// Funktion zum Hinzufügen einer neuen PersonenInstanz
+
 function postPerson(event) {
-
-alert($('input[name="pname"]').val());
-//alert($('#personen_pflege_tabelle input[name="pid"]').val());
-
     // Holen Sie die Formulardaten
 var formData = {
     'name': $('input[name="pname"]').val()
-
     };
-    alert(JSON.stringify(formData));
     // Verarbeiten Sie das Formular
     $.ajax({
         type: 'POST',
@@ -256,7 +222,6 @@ var formData = {
         },
         error: function(jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
-            alert("Fehler");
         }
     });
 
@@ -264,19 +229,16 @@ var formData = {
     event.preventDefault();
 }
 
+// Funktion zum Updaten einer neuen PersonenInstanz
 
 function updatePerson(event) {
 
-alert($('input[name="pname"]').val());
-//alert($('#personen_pflege_tabelle input[name="pid"]').val());
 var id = $('#pid').val();
     // Holen Sie die Formulardaten
 var formData = {
     'pid': $('input[name="pid"]').val(),
     'name': $('input[name="pname"]').val()
-
     };
-    alert(JSON.stringify(formData));
     // Verarbeiten Sie das Formular
     $.ajax({
         type: 'PUT',
@@ -289,23 +251,18 @@ var formData = {
         },
         error: function(jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
-            alert("Fehler");
         }
     });
-
     // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
     event.preventDefault();
 }
 
+// Funktion zum Löschen einer neuen PersonenInstanz
 
 function deletePerson(event) {
 
-alert($('input[name="pid"]').val());
-//alert($('#personen_pflege_tabelle input[name="pid"]').val());
-var id = $('#pid').val();
     // Holen Sie die Formulardaten
-
-    alert(JSON.stringify());
+var id = $('#pid').val();
     // Verarbeiten Sie das Formular
     $.ajax({
         type: 'DELETE',
@@ -318,13 +275,13 @@ var id = $('#pid').val();
         },
         error: function(jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
-            alert("Fehler");
         }
     });
 
     // Verhindern Sie das normale Absenden des Formulars und das Neuladen der Seite
     event.preventDefault();
 }
+
 
 function updateSelect() {
     $.ajax({

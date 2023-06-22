@@ -9,7 +9,7 @@ body {
   font-family: Roboto, sans-serif;
   color: #111111;
   background-image: url('vaca_background.jpg'); /* Hintergrundbild*/
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -224,7 +224,7 @@ th, td {
 
 .dropdown {
   position: relative;
-  display: center;
+  display: inline-block;
   color: #ffffff;
 }
 
