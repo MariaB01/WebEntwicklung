@@ -9,7 +9,7 @@ body {
   font-family: Roboto, sans-serif;
   color: #111111;
   background-image: url('vaca_background.jpg'); /* Hintergrundbild*/
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
   background-position: center;
 }
@@ -147,6 +147,7 @@ th, td {
 
 /* Buttons Styleinformationen */
 
+
 /* User Anzeigen Button Styleinformationen */
 .admin-button {
   background-color: #04aa6d;
@@ -166,31 +167,7 @@ th, td {
 }
 
 
-/*
-.adder-btn {
-  background-color: #04aa6d;
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.5s ease;
-  font-weight: bold;
-}
-
-.adder-btn:hover {
-  color: #04aa6d;
-  background-color: #ffffff;
-  font-weight: bold;
-}
-*/
-
-/* Dropdown - Userverwaltungsbuttons Styleinformationen */
+/* Userverwaltungsbuttons (Dropdown) Styleinformationen */
 .dropdown-btn {
   background-color: #04aa6d;
   color: #ffffff;
@@ -212,14 +189,15 @@ th, td {
 }
 
 
-/* Dropdown Styleinformationen */
+/* Dropdown Buttons / Container Styleinformationen */
 
 .dropdown-container {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%; /* Adjust width as needed */
+  width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 .dropdown {
@@ -228,11 +206,14 @@ th, td {
   color: #ffffff;
 }
 
+
+/* Dropdown Content und Input Styleinformationen */
+
 .dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
-  right: 10px; /* Adjust this value as needed */
+  right: 10px;
   background-color: #4ac080;
   color: #ffffff;
   min-width: 400px;

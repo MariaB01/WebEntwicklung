@@ -55,8 +55,8 @@ class VorschlagService:
     @classmethod
     def delete_vorschlag(cls, person_id, uz_uzid):
         #Löscht einen vorhandenen Vorschlag anhand der angegebenen Person-ID und UZ-ID.
-        # :param person_id: Die ID der Person.
-        # :param uz_uzid: Die UZ-ID.
+        #:param person_id: Die ID der Person.
+        #:param uz_uzid: Die UZ-ID.
         session = DBSession.get_session()
         vorschlag = session.query(Vorschlaege).filter_by(person_id=person_id, uz_uzid=uz_uzid).first()
 
@@ -70,8 +70,8 @@ class VorschlagService:
     @classmethod
     def update_vorschlag(cls, uz_uzid, person_id, vorschlag_data):
         # Updated einen vorhandenen Vorschlag anhand der angegebenen Person-ID und UZ-ID.
-        # :param person_id: Die ID der Person.
-        # :param uz_uzid: Die UZ-ID.
+        #:param person_id: Die ID der Person.
+        #:param uz_uzid: Die UZ-ID.
         session = DBSession.get_session()
         vorschlag = session.query(Vorschlaege).filter_by(uz_uzid=uz_uzid, person_id=person_id).first()
 

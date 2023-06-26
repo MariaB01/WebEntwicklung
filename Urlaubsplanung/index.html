@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Urlaubsplaner</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/ajaxfunctions.js"></script>
+    <link rel="stylesheet" href="style.css"> <!-- CSS Stylesheet-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> <!-- Link zum externen Stylesheet für Datenbank Connection--->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- jQuery Bibliothek -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> <!-- jQuery Datenbank Bibliothek -->
+    <script type="text/javascript" src="js/ajaxfunctions.js"></script> <!-- JavaScript Dokument -->
 </head>
 <body>
     <header>
+        <!-- Dropdown Felder -->
       <div class="dropdown-container">
          <div class = "dropdown" >
             <h1>Urlaubsplaner</h1>
          </div>
+          <!-- Dropdown User Anzeigen -->
          <div class="dropdown">
             <button class="admin-button" id="Verwaltungsbutton">User anzeigen</button>
             <div class="dropdown-content">
@@ -36,11 +38,12 @@
                         <td>000003</td>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
+                        <td> colspan="2"</td> <!-- Leere Zelle -->
                     </tr>
                 </table>
               </div>
             </div>
+          <!-- Dropdown User Verwalten-->
              <div class="dropdown">
             <button class="admin-button" id="Userbutton">User verwalten</button>
                 <div class="dropdown-content">
@@ -61,6 +64,7 @@
                         <button class ="dropdown-btn" id="Benutzer_del">Benutzer löschen</button>
                 </div>
             </div>
+          <!-- Dropdown Login-->
             <div class="dropdown">
             <button class="admin-button" id="Loginbutton">Login</button>
                 <div class="dropdown-content">
@@ -77,6 +81,7 @@
         </div>
     </header>
     <main>
+        <!-- Tabelle Neue Urlaubsziele-->
         <div class="table-container-1">
             <h2>Urlaubsvorschläge</h2>
             <form id="NeuesUrlaubzieltabelle">
@@ -383,8 +388,9 @@
             </form>
                     <button class ="dropdown-btn" id="newUZButton"> + Neuer Urlaubsvorschlag</button>
                     <button class ="dropdown-btn" id="updateUZ"> Urlaubsvorschlag ändern</button>
-                    <button class ="dropdown-btn"id="deleteUZ"> Urlaubsvorschlag löschen</button>
+                    <button class ="dropdown-btn" id="deleteUZ"> Urlaubsvorschlag löschen</button>
         </div>
+        <!-- Tabelle gesammelte Urlaubsvorschläge-->
         <div class="table-container-show">
             <h2>Gesammelte Urlaubsvorschläge</h2>
             <table id="uztable" class="slider-table">
@@ -416,6 +422,7 @@
                 </tbody>
             </table>
         </div>
+        <!-- Tabelle Urlaubsvorschlag anlegen-->
         <div class="table-container-middle">
             <form id="vorschlag_anlegen">
                 <table >
@@ -437,6 +444,7 @@
             <input class ="dropdown-btn" type="submit" value="Bewertung abgeben" id="vorschlag_abgeben">
             </form>
         </div>
+        <!-- Tabelle mit Prioritäten-->
         <div class="table-container-2">
             <table id="SortiertPrioTabelle">
                 <thead>
@@ -454,6 +462,6 @@
             </table>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- JavaScript Dokument -->
 </body>
 </html>
